@@ -19,3 +19,8 @@
 .center {
     text-align: center;
 }
+/*Centrar de forma Horizontal*/
+.ch{
+    vertical-align: middle;
+    text-align:center;
+}

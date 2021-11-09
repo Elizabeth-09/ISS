@@ -1,29 +1,31 @@
-$(document).ready(function () {
-    /* Cargar vista usuario */
-    $(".user").click(function(event) {
-        $("#contenido").load("usuarios/principal.php");
+$(document).ready(function() {
+    /*Boton Clientes*/
+    $("a.clientes").click(function(event) {
+        $("#contenido").load("./views/clientes/cliente.php");
         event.preventDefault();
     });
-    /* btn salir*/
-    $(".exit-sys").click(function () {
-        if (confirm('Seguro/a en cerrar sesion')) {
-            $("#contenido").load("../../index.php");
-        }
-        else {
-            alert('Cierre de sesion cancelado');
-            $("#contenido").load("usuarios/principal.php");
-        }
+    /*Boton Adminsitrador*/
+    $("a.p-admin").click(function(event) {
+        $('#contenido').html('<div class="loading" style="margin-top:100px;text-align:center;"><img src="./public/img/login/load.gif" alt="loading" /><br/>Un momento, por favor...</div>');
+        $("#contenido").load("./views/panel/principal.php");
+        event.preventDefault();
     });
-
-    $(".exit-sys1").click(function () {
-        if (confirm('Seguro/a que desea eliminar el usuario')) {
-            $("#contenido").load("usuarios/principal.php"); 
-        }
-        else {
-            alert('Eliminar usuario cancelado');
-            $("#contenido").load("usuarios/principal.php");
-        }
+    /*Boton Inventarios*/
+    $("a.inventarios").click(function(event) {
+        $("#contenido").load("./views/panel/inventarios/principal.php");
+        event.preventDefault();
     });
-
-
+    /* Btn Salir */
+    $("a.salir").click(function(event) {
+        event.preventDefault();
+        alertify.confirm('Cerrar Sesión', 'Seguro/a en cerrar sesión',
+            function() {
+                $("#data").load("index.php?off=1");
+            },
+            function() {
+                alertify.error('Cierre de sesión cancelado...');
+            }
+        );
+        
+    });
 });
